@@ -1,9 +1,23 @@
-" ############# Vundle
+ "############# Vundle
 set nocompatible              " required
 filetype off                  " required
 
+
+" START - Setting up Vundle - the vim plugin bundler
+let iCanHazVundle=1
+let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
+if !filereadable(vundle_readme)
+  echo "Installing Vundle.."
+  echo ""
+  silent !mkdir -p ~/.vim/bundle
+  silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  let iCanHazVundle=0
+endif
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#rc()
+
+
 
 
 " Install with :VundleInstall
@@ -15,6 +29,9 @@ call vundle#begin('~/.vim/bundle')
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
+" this plugin requires compiling, you will get an error about YCM server
+" restart at first. 
+" check https://github.com/ycm-core/YouCompleteMe for compiling instructions
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'Yggdroot/indentLine'
@@ -22,9 +39,29 @@ Plugin 'matze/vim-move'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-ctrlspace/vim-ctrlspace'
+Plugin 'scrooloose/nerdcommenter'
 call vundle#end()
 
+
+" install any new plugins listed in vundle section
+if iCanHazVundle == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    :PluginInstall
+endif   
+
+
+
+
 execute pathogen#infect()
+
+
+" install vim-plug (small vim plugin manager)
+if empty(glob('~/.vim/autoload/plug.vim'))
+	  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+	      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
 
 " Install with :PlugInstall
 call plug#begin('~/.vim/plugged')
@@ -36,10 +73,6 @@ call plug#end()
 
 
 " use :FormatJSON to reformat file to human readable json
-com! FormatJSON %!python -m json.tool
-
-syntax on
-
 
 " set filetype + plugin + indent 
 filetype plugin indent on
@@ -77,6 +110,7 @@ nnoremap <C-H> <C-W><C-H>
 "set foldmethod=syntax
 
 " NERDTree shourtcuts
+" Use ctrl+p to open and close NERDTree file tree
 nmap <C-o> :NERDTreeToggle<CR>
 "nmap <C-l> :NERDTreeFind<CR>
 "t: Open the selected file in a new tab
@@ -89,10 +123,16 @@ nmap <C-o> :NERDTreeToggle<CR>
 "R: Refresh the tree, useful if files change outside of Vim
 "?: Toggle NERD Tree's quick help
 
+
+
+
 " toggle on/off with :IndentLinesToggle
 " to smooth the lines patch the font following guide in https://github.com/Yggdroot/indentLine
 let g:indentLine_char = '┆'
 
+
+
+" copy/cut/paste/...  stuff
 " while in visual mode: copy and switch to insert mode 
 vmap <C-c> y<Esc>i
 " while in visual mode cut and switch to insert mode
@@ -104,9 +144,8 @@ map <C-z> <Esc>
 imap <C-z> <Esc>ui
 
 " vim-move 
-" use shift + j or k to move blocks of text up and down
-let g:move_key_modifier = 's'
-
+" use shift + arrows to move lines (or blocks using visual mode select) of text up and down
+let g:move_key_modifier = 'C-s'
 
 " Ctrl-d: delete rest of line and switch to insert mode
 " Default shortcuts
@@ -139,9 +178,25 @@ highlight BadWhitespace ctermbg=red guibg=red
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 
+" display minimap of the file on the right side
+noremap mm :Minimap<CR>
+" close minimap using mc
+let g:minimap_close='mc'
 
-" resize split windows, keep preset Ctrl+Shift and arrow
-noremap <silent> <C-S-Left> :vertical resize +1<CR>
-noremap <silent> <C-S-Right> :vertical resize -1<CR>
-noremap <silent> <C-S-Down> :res -1<CR>
-noremap <silent> <C-S-Up> :res +1<CR>
+" resize split windows, keep pressed Ctrl+Shift and arrow
+"noremap <silent> <C-s-h> :vertical resize +1<CR>
+"noremap <silent> <C-s-l> :vertical resize -1<CR>
+"noremap <silent> <C-s-j> :res -1<CR>
+"noremap <silent> <C-s-k> :res +1<CR>
+
+" use ctrl+s to save
+"nmap <c-s> :w<CR>
+"imap <c-s> <Esc>:w<CR>a
+
+
+" map commands to comment lines/blocks 
+noremap <silent> cc :call NERDComment("cc","Toggle")<CR>
+"noremap <silent> cs :call NERDComment("cs","Sexy")<CR>
+"noremap <silent> cl :call NERDComment("cl","AlignLeft")<CR>
+"noremap <silent> ce :call NERDComment("ce","ToEOL")<CR>
+":TCommentBlock
