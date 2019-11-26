@@ -77,6 +77,7 @@ call plug#end()
 " set filetype + plugin + indent 
 filetype plugin indent on
 
+:set hlsearch
 
 set rtp+=~/.fzf
 
@@ -200,3 +201,9 @@ noremap <silent> cc :call NERDComment("cc","Toggle")<CR>
 "noremap <silent> cl :call NERDComment("cl","AlignLeft")<CR>
 "noremap <silent> ce :call NERDComment("ce","ToEOL")<CR>
 ":TCommentBlock
+:set hlsearch
+:set expandtab
+:set tabstop=4
+:set softtabstop=4
+:set shiftwidth =4
+
