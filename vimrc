@@ -1,9 +1,8 @@
- "############# Vundle
+"############# Vundle
 set nocompatible              " required
 filetype off                  " required
 
-
-" START - Setting up Vundle - the vim plugin bundler
+"START - Setting up Vundle - the vim plugin bundler
 let iCanHazVundle=1
 let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
 if !filereadable(vundle_readme)
@@ -28,13 +27,13 @@ call vundle#begin('~/.vim/bundle')
 " used Bundle instead of Plugin)
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tmhedberg/SimpylFold'
-Plugin 'vim-scripts/indentpython.vim'
+"Plugin 'vim-scripts/indentpython.vim'
 " this plugin requires compiling, you will get an error about YCM server
 " restart at first. 
 " check https://github.com/ycm-core/YouCompleteMe for compiling instructions
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'severin-lemaignan/vim-minimap'
-Plugin 'Yggdroot/indentLine'
+"Plugin 'Yggdroot/indentLine'
 Plugin 'matze/vim-move'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -43,7 +42,7 @@ Plugin 'scrooloose/nerdcommenter'
 call vundle#end()
 
 
-" install any new plugins listed in vundle section
+ "install any new plugins listed in vundle section
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
     echo ""
@@ -66,7 +65,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 " Install with :PlugInstall
 call plug#begin('~/.vim/plugged')
 " Put your plugins here.
-Plug 'tpope/vim-unimpaired'
+"Plug 'tpope/vim-unimpaired'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 call plug#end()
@@ -75,13 +74,19 @@ call plug#end()
 " use :FormatJSON to reformat file to human readable json
 
 " set filetype + plugin + indent 
+"filetype plugin on "indent on
 filetype plugin indent on
-
-:set hlsearch
 
 set rtp+=~/.fzf
 
-" vim split windows
+
+
+" Splits:
+" Ctrl-w + v: open vertical split
+" Ctrl-w + n: open horizontal split
+" Ctrl-w + w (w twice): toggle between open splits
+" Ctrl-w (release and then arrows) to move between splits 
+" 
 set splitbelow
 set splitright
 
@@ -90,14 +95,15 @@ set splitright
 "*** this one clash with ctrl-up of "nnoremap <silent> <C-Up> <c-w>k
 "nnoremap <silent> <C-Down> <c-w>j
 
+
 "move to split below
-nnoremap <C-J> <C-W><C-J>
+"nnoremap <C-J> <C-W><C-J>
 " move to split above
-nnoremap <C-K> <C-W><C-K>
+"nnoremap <C-K> <C-W><C-K>
 " move to split to the right
-nnoremap <C-L> <C-W><C-L>
+"nnoremap <C-L> <C-W><C-L>
 " move to split to the left
-nnoremap <C-H> <C-W><C-H>
+"nnoremap <C-H> <C-W><C-H>
 
 "simplyfold
 " zc to close a fold and zo to open one
@@ -130,7 +136,7 @@ nmap <C-o> :NERDTreeToggle<CR>
 " toggle on/off with :IndentLinesToggle
 " to smooth the lines patch the font following guide in https://github.com/Yggdroot/indentLine
 let g:indentLine_char = '┆'
-
+let g:indentLine_enabled = 0
 
 
 " copy/cut/paste/...  stuff
@@ -196,14 +202,23 @@ let g:minimap_close='mc'
 
 
 " map commands to comment lines/blocks 
+let g:NERDCommentEmptyLines = 1
 noremap <silent> cc :call NERDComment("cc","Toggle")<CR>
 "noremap <silent> cs :call NERDComment("cs","Sexy")<CR>
 "noremap <silent> cl :call NERDComment("cl","AlignLeft")<CR>
 "noremap <silent> ce :call NERDComment("ce","ToEOL")<CR>
 ":TCommentBlock
-:set hlsearch
 :set expandtab
 :set tabstop=4
 :set softtabstop=4
 :set shiftwidth =4
 
+
+" Common used shortcuts
+" Shift-z-z: save and exit
+" Shift-z-q: quite without saving
+" Ctrl-s remap to save (:w) -> this requires an extra line in bash/zsh *rc: stty -ixon
+"
+nmap <c-s> :w<CR>
+imap <c-s> <Esc>:w<CR>
+imap <c-s> <Esc><c-s>
