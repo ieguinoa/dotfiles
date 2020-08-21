@@ -1,0 +1,61 @@
+" insert line above (O) or below (o)
+" shift + C to remove from current position to end of line and switch to insert
+
+" ^ moves to beginning of line and switch to insert mode
+map ^ ^i
+
+" A = Shift+a  moves to end of line and append (append instead of insert is because g_ moves to the position of the last nonblank character)
+map <S-a> g_a
+
+
+" move backwards one word in insert mode
+imap <C-b> <Esc>b
+
+
+
+" copy/cut/paste/...  stuff
+" yy copies the current line. yyp copy and pastes the current line
+
+" while in visual mode: copy and switch to normal mode 
+vmap <C-c> y<Esc>
+" while in visual mode cut and switch to normal mode
+vmap <C-x> d<Esc>
+" while in insert 
+imap <C-v> <Esc>pi
+imap <C-y> <Esc>ddi
+map <C-z> <Esc>
+imap <C-z> <Esc>ui
+
+
+
+
+" use ctrl+s to save
+"nmap <c-s> :w<CR>
+"imap <c-s> <Esc>:w<CR>a
+
+
+
+" Use Ctrl + left/right arrows to move around the tabs within VIM
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+
+
+" Use Ctrl + left/right arrows to move around the tabs within VIM
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+
+
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+" gv can reselect the lines last selected with visual mode
+
+
+:set expandtab
+:set tabstop=4
+:set softtabstop=4
+:set shiftwidth =4
+
