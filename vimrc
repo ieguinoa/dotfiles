@@ -145,6 +145,8 @@ imap <C-z> <Esc>ui
 
 " vim-move 
 " use shift + arrows to move lines (or blocks using visual mode select) of text up and down
+" *** I've also modified the plugin file directly to change the hjkl for the
+" up,down...
 let g:move_key_modifier = 'C-s'
 
 " Ctrl-d: delete rest of line and switch to insert mode
