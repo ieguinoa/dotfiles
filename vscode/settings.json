@@ -1,0 +1,6 @@
+{
+    "vim.vimrc.enable": true,
+    "vim.vimrc.path": "/home/ignacio/.vscoderc",
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "workbench.editor.enablePreview": false
+}
