@@ -1,12 +1,14 @@
 " insert line above (O) or below (o)
 " shift + C to remove from current position to end of line and switch to insert
 
-" ^ moves to beginning of line and switch to insert mode
-map ^ ^i
 
-" A = Shift+a  moves to end of line and append (append instead of insert is because g_ moves to the position of the last nonblank character)
-map <S-a> g_a
-
+" Ctrl-a   moves to last non-blank char of the line and switches to insert mode
+" Shift-a = A   moves to end of line in insert mode  
+" Ctrl-e = I  moves to beginning of line in insert mode. it also works while in insert mode
+map <C-a> <Esc>g_a
+imap <C-a> <Esc>g_a
+map <C-e> <Esc>I
+imap <C-e> <Esc>I
 
 " move backwards one word in insert mode
 imap <C-b> <Esc>b
