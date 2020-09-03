@@ -76,6 +76,7 @@ plugins=(
   rake
   rbenv
   ruby
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -117,3 +118,7 @@ export PATH="$PATH:~/tmux"
 #export TERM="xterm-256color"
 # ryan
 #alias tmux="tmux -2"
+
+
+# set zsh-autosuggestions color to greenish
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=2"
