@@ -74,6 +74,7 @@ plugins=(
   dotenv
   osx
   rake
+  ripgrep
   rbenv
   ruby
   zsh-autosuggestions
@@ -119,6 +120,14 @@ export PATH="$PATH:~/tmux"
 # ryan
 #alias tmux="tmux -2"
 
-
-# set zsh-autosuggestions color to greenish
+# set autosugest colour to greenish
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=2"
+
+#fzf shortcuts
+# CTRL + t : opens fzf to get a parameter. eg vim  CTRl+t
+# Tab selects multiple entries from the fzf list
+# Alt+c   opens fzf and cd to the selected dir
+#
+export FZF_DEFAULT_OPTS='--height=70% --preview="cat {}" --preview-window=right:60%:wrap'
+export FZF_DEFAULT_COMMAND='rg --files'
+#export FZF_CTRL_T_COMMAND='$FZF_DEFAULT_COMMAND'
