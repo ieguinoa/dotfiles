@@ -128,6 +128,7 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=2"
 # Tab selects multiple entries from the fzf list
 # Alt+c   opens fzf and cd to the selected dir
 #
-export FZF_DEFAULT_OPTS='--height=70% --preview="cat {}" --preview-window=right:60%:wrap'
+#export FZF_DEFAULT_OPTS='--height=70% --preview="cat {}" --preview-window=right:40%:wrap'
+export FZF_CTRL_T_OPTS='--height=100% --preview="cat {}" --preview-window=right:40%:wrap'
 export FZF_DEFAULT_COMMAND='rg --files'
 #export FZF_CTRL_T_COMMAND='$FZF_DEFAULT_COMMAND'
