@@ -29,6 +29,7 @@ call vundle#begin('~/.vim/bundle')
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
+Plugin 'dense-analysis/ale'
 " this plugin requires compiling, you will get an error about YCM server
 " restart at first. 
 " check https://github.com/ycm-core/YouCompleteMe for compiling instructions
@@ -69,6 +70,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-unimpaired'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 
@@ -124,6 +128,8 @@ nmap <C-o> :NERDTreeToggle<CR>
 "R: Refresh the tree, useful if files change outside of Vim
 "?: Toggle NERD Tree's quick help
 
+nnoremap <C-t> :FZF<Cr>
+nnoremap <C-r> :Rg<Cr>
 
 
 
@@ -232,4 +238,43 @@ noremap <silent> cc :call NERDComment("cc","Toggle")<CR>
 "map ^ ^i
 "map $ $i
 "map <S-a> g_i
-source .vscoderc
+
+" delete until end of line
+noremap <C-d> d$i 
+inoremap <C-d> <Esc>d$i
+
+
+" Mappings from vim-visual-multi
+" https://github.com/mg979/vim-visual-multi/wiki/Mappings
+let g:VM_maps = {}
+let g:VM_maps["Add Cursor Down"]='<C-Down>'
+let g:VM_maps["Add Cursor Up"]='<C-Up>'
+let g:VM_maps["Select h"]           = '<C-Left>'
+let g:VM_maps["Select l"]           = '<C-Right>'
+"let g:VM_maps["Toggle Mappings"]    = '<Space>'
+"C-c and up and down arrows to create cursos in multiple lines. then $ to move the cursors to end of line
+"C-n: selects the current word, if I keep hitting C-n it selects the next occurence of that word, ideal for replacing a subset of occurences of a word
+
+
+
+nmap <F8> :TagbarToggle<CR>
+set updatetime=500
+
+
+"https://github.com/dense-analysis/ale
+let g:ale_sign_column_always = 0
+
+" cheatsheet
+" d$ = delete until end of line
+" d0 = delete until beginning of line
+" diw = delete the word you are currently on (even if you are in the middle of
+" the word)
+" ciw = same as diw but switches to insert afterwards (=change current word)
+" dw = /delete next word
+" dt{character} = deletes until first character occurence
+" d/{word}+enter = deletes until next ocurrence of that word
+"
+" using C-w would conflict with switching between file list and window
+"noremap <C-w> dwi 
+"inoremap <C-w> <Esc>dwi
+source ~/.vscoderc
